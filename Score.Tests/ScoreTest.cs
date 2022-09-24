@@ -22,9 +22,7 @@ public class GameTest
     [Test]
     public void AllOnes()
     {
-        var pins = 1;
-        var frames = 20;
-        RollMany(frames, pins);
+        RollMany(20, 1);
         Assert.AreEqual(20, _game.Score());
     }
 
