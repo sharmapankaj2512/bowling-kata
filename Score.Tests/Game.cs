@@ -13,11 +13,21 @@ public class Game
     public int Score()
     {
         var score = 0;
-        for (var frameIndex = 0; frameIndex < _scores.Length - 1 && NotPerfectGame(frameIndex, score); frameIndex++)
+        var frameIndex = 0;
+
+        while (NotPerfectGame(frameIndex, score) && GameNotOver(frameIndex))
         {
-            score += _scores[frameIndex] + Bonus(frameIndex);
+            score += _scores[frameIndex];
+            score += Bonus(frameIndex);
+            frameIndex += 1;
         }
+        
         return score;
+    }
+
+    private static bool GameNotOver(int frameIndex)
+    {
+        return frameIndex < 20;
     }
 
     private int Bonus(int frameIndex)
