@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Score.Tests;
 
 public class Game
