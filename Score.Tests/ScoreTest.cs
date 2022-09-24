@@ -36,6 +36,17 @@ public class GameTest
         Assert.AreEqual(16, _game.Score());
     }
 
+    [Test]
+    [Ignore("")]
+    public void OneStrike()
+    {
+        _game.Roll(10);
+        _game.Roll(5);
+        _game.Roll(2);
+        RollMany(17, 0);
+        Assert.AreEqual(24, _game.Score());
+    }
+
     private static void RollMany(int frames, int pins)
     {
         for (var i = 0; i < frames; i++)
