@@ -29,7 +29,6 @@ public class GameTest
     }
 
     [Test]
-    [Ignore("differed")]
     public void OneSpare()
     {
         _game.Roll(5);
@@ -59,6 +58,19 @@ public class Game
 
     public int Score()
     {
-        return _scores.Sum();
+        int sum = _scores[0] + _scores[1];
+        for (var index = 2; index < _scores.Count; index++)
+        {
+            if (ScoreOfPreviousTwoFrames(index) == 10)
+                sum += _scores[index] * 2;    
+            sum += _scores[index];
+        }
+
+        return sum;
+    }
+
+    private int ScoreOfPreviousTwoFrames(int index)
+    {
+        return _scores[index - 1] + _scores[index - 2];
     }
 }
