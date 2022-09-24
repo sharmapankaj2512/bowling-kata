@@ -15,9 +15,9 @@ public class Game
         var sum = _scores[0] + _scores[1];
         for (var frameIndex = 2; frameIndex < _scores.Length; frameIndex++)
         {
-            if (IsSpare(frameIndex))
-                sum += _scores[frameIndex] * 2;    
-            sum += _scores[frameIndex];
+            sum += IsSpare(frameIndex) ? 
+                _scores[frameIndex] * 2 : 
+                _scores[frameIndex];
         }
         return sum;
     }

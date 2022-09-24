@@ -31,7 +31,7 @@ public class GameTest
     {
         _game.Roll(5);
         _game.Roll(5);
-        _game.Roll(2);
+        _game.Roll(3);
         RollMany(17, 0);
         Assert.AreEqual(16, _game.Score());
     }
