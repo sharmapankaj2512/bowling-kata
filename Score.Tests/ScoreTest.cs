@@ -29,9 +29,7 @@ public class GameTest
     [Test]
     public void OneSpare()
     {
-        _game.Roll(5);
-        _game.Roll(5);
-        _game.Roll(3);
+        RollSpare();
         RollMany(17, 0);
         Assert.AreEqual(16, _game.Score());
     }
@@ -39,11 +37,23 @@ public class GameTest
     [Test]
     public void OneStrike()
     {
+        RollStrike();
+        RollMany(17, 0);
+        Assert.AreEqual(24, _game.Score());
+    }
+
+    private static void RollStrike()
+    {
         _game.Roll(10);
         _game.Roll(5);
         _game.Roll(2);
-        RollMany(17, 0);
-        Assert.AreEqual(24, _game.Score());
+    }
+
+    private static void RollSpare()
+    {
+        _game.Roll(5);
+        _game.Roll(5);
+        _game.Roll(3);
     }
 
     private static void RollMany(int frames, int pins)
