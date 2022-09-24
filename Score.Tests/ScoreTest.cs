@@ -4,13 +4,19 @@ namespace Score.Tests;
 
 public class GameTest
 {
+    private static Game _game;
+
+    [SetUp]
+    public void Setup()
+    {
+        _game = new Game();
+    }
+    
     [Test]
     public void GutterGame()
     {
-        var pins = 0;
-        var frames = 20;
-        var game = RollMany(frames, pins);
-        Assert.AreEqual(0, game.Score());
+        RollMany(20, 0);
+        Assert.AreEqual(0, _game.Score());
     }
 
     [Test]
@@ -18,19 +24,16 @@ public class GameTest
     {
         var pins = 1;
         var frames = 20;
-        var game = RollMany(frames, pins);
-        Assert.AreEqual(20, game.Score());
+        RollMany(frames, pins);
+        Assert.AreEqual(20, _game.Score());
     }
 
-    private static Game RollMany(int frames, int pins)
+    private static void RollMany(int frames, int pins)
     {
-        var game = new Game();
         for (var i = 0; i < frames; i++)
         {
-            game.Roll(pins);
+            _game.Roll(pins);
         }
-
-        return game;
     }
 }
 
