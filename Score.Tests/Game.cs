@@ -15,8 +15,7 @@ public class Game
         var score = 0;
         for (var frameIndex = 0; frameIndex < _scores.Length - 1 && NotPerfectGame(frameIndex, score); frameIndex++)
         {
-            score += _scores[frameIndex];
-            score += Bonus(frameIndex);
+            score += _scores[frameIndex] + Bonus(frameIndex);
         }
         return score;
     }
