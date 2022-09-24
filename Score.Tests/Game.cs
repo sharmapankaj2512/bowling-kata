@@ -12,15 +12,22 @@ public class Game
 
     public int Score()
     {
-        var sum = 0;
+        var score = 0;
         for (var frameIndex = 0; frameIndex < _scores.Length - 1; frameIndex++)
         {
             if (IsSpare(frameIndex))
-                sum += _scores[frameIndex] + _scores[frameIndex + 2];
+                score += _scores[frameIndex] + _scores[frameIndex + 2];
+            else if (IsStrike(frameIndex)) 
+                score += _scores[frameIndex] + _scores[frameIndex + 1] + _scores[frameIndex + 2];
             else
-                sum += _scores[frameIndex];
+                score += _scores[frameIndex];
         }
-        return sum;
+        return score;
+    }
+
+    private bool IsStrike(int frameIndex)
+    {
+        return _scores[frameIndex] == 10;
     }
 
     private bool IsSpare(int index)

@@ -37,7 +37,6 @@ public class GameTest
     }
 
     [Test]
-    [Ignore("")]
     public void OneStrike()
     {
         _game.Roll(10);
