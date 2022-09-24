@@ -42,6 +42,13 @@ public class GameTest
         Assert.AreEqual(24, _game.Score());
     }
 
+    [Test]
+    public void PerfectGame()
+    {
+        RollMany(12, 10);
+        Assert.AreEqual(300, _game.Score());
+    }
+
     private static void RollStrike()
     {
         _game.Roll(10);

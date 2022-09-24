@@ -13,16 +13,26 @@ public class Game
     public int Score()
     {
         var score = 0;
-        for (var frameIndex = 0; frameIndex < _scores.Length - 1; frameIndex++)
+        for (var frameIndex = 0; frameIndex < _scores.Length - 1 && NotPerfectGame(frameIndex, score); frameIndex++)
         {
             if (IsSpare(frameIndex))
                 score += _scores[frameIndex] + _scores[frameIndex + 2];
-            else if (IsStrike(frameIndex)) 
+            else if (IsStrike(frameIndex))
                 score += _scores[frameIndex] + _scores[frameIndex + 1] + _scores[frameIndex + 2];
             else
                 score += _scores[frameIndex];
         }
         return score;
+    }
+
+    private bool NotPerfectGame(int frameIndex, int score)
+    {
+        return !PerfectGame(frameIndex, score);
+    }
+
+    private bool PerfectGame(int frameIndex, int score)
+    {
+        return frameIndex == 10 && score == 300;
     }
 
     private bool IsStrike(int frameIndex)
