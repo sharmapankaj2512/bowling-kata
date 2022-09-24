@@ -58,17 +58,17 @@ public class Game
     public int Score()
     {
         var sum = _scores[0] + _scores[1];
-        for (var index = 2; index < _scores.Count; index++)
+        for (var frameIndex = 2; frameIndex < _scores.Count; frameIndex++)
         {
-            if (ScoreOfPreviousTwoFrames(index) == 10)
-                sum += _scores[index] * 2;    
-            sum += _scores[index];
+            if (IsSpare(frameIndex))
+                sum += _scores[frameIndex] * 2;    
+            sum += _scores[frameIndex];
         }
         return sum;
     }
 
-    private int ScoreOfPreviousTwoFrames(int index)
+    private bool IsSpare(int index)
     {
-        return _scores[index - 1] + _scores[index - 2];
+        return _scores[index - 1] + _scores[index - 2] == 10;
     }
 }
