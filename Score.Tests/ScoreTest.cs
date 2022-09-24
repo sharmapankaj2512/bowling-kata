@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Score.Tests;
@@ -26,6 +28,17 @@ public class GameTest
         Assert.AreEqual(20, _game.Score());
     }
 
+    [Test]
+    [Ignore("differed")]
+    public void OneSpare()
+    {
+        _game.Roll(5);
+        _game.Roll(5);
+        _game.Roll(2);
+        RollMany(17, 0);
+        Assert.AreEqual(16, _game.Score());
+    }
+
     private static void RollMany(int frames, int pins)
     {
         for (var i = 0; i < frames; i++)
@@ -37,15 +50,15 @@ public class GameTest
 
 public class Game
 {
-    private int _score;
-    
+    private readonly List<int> _scores = new();
+
     public void Roll(int pins)
     {
-        _score += pins;
+        _scores.Add(pins);
     }
 
     public int Score()
     {
-        return _score;
+        return _scores.Sum();
     }
 }
