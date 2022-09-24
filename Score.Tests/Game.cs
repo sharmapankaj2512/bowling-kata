@@ -16,12 +16,18 @@ public class Game
         for (var frameIndex = 0; frameIndex < _scores.Length - 1 && NotPerfectGame(frameIndex, score); frameIndex++)
         {
             score += _scores[frameIndex];
-            if (IsSpare(frameIndex))
-                score += SpareBonus(frameIndex);
-            else if (IsStrike(frameIndex))
-                score += StrikeBonus(frameIndex);
+            score += Bonus(frameIndex);
         }
         return score;
+    }
+
+    private int Bonus(int frameIndex)
+    {
+        if (IsSpare(frameIndex))
+            return SpareBonus(frameIndex);
+        if (IsStrike(frameIndex))
+            return StrikeBonus(frameIndex);
+        return 0;
     }
 
     private int StrikeBonus(int frameIndex)
