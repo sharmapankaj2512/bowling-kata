@@ -4,17 +4,18 @@ namespace Score.Tests;
 
 public class Game
 {
-    private readonly List<int> _scores = new();
+    private int _currentRoll;
+    private readonly int[] _scores = new int[21];
 
     public void Roll(int pins)
     {
-        _scores.Add(pins);
+        _scores[_currentRoll++] = pins;
     }
 
     public int Score()
     {
         var sum = _scores[0] + _scores[1];
-        for (var frameIndex = 2; frameIndex < _scores.Count; frameIndex++)
+        for (var frameIndex = 2; frameIndex < _scores.Length; frameIndex++)
         {
             if (IsSpare(frameIndex))
                 sum += _scores[frameIndex] * 2;    
