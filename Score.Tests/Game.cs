@@ -12,18 +12,19 @@ public class Game
 
     public int Score()
     {
-        var sum = _scores[0] + _scores[1];
-        for (var frameIndex = 2; frameIndex < _scores.Length; frameIndex++)
+        var sum = 0;
+        for (var frameIndex = 0; frameIndex < _scores.Length - 1; frameIndex++)
         {
-            sum += IsSpare(frameIndex) ? 
-                _scores[frameIndex] * 2 : 
-                _scores[frameIndex];
+            if (IsSpare(frameIndex))
+                sum += _scores[frameIndex] + _scores[frameIndex + 2];
+            else
+                sum += _scores[frameIndex];
         }
         return sum;
     }
 
     private bool IsSpare(int index)
     {
-        return _scores[index - 1] + _scores[index - 2] == 10;
+        return _scores[index] + _scores[index + 1] == 10;
     }
 }
